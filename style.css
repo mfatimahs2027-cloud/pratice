@@ -1,0 +1,301 @@
+/* ================= GLOBAL ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.7;
+    background: url("https://i.pinimg.com/originals/58/ba/e0/58bae04196329e25ec7a2136db50b729.gif") center/cover fixed no-repeat;
+    color: white;
+    position: relative;
+}
+
+/* overlay for readability */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: -1;
+}
+
+/* floating glow */
+body::after {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0,255,140,0.2), transparent);
+    top: 20%;
+    left: -100px;
+    filter: blur(40px);
+    animation: floatGlow 8s ease-in-out infinite alternate;
+    z-index: -1;
+}
+
+/* ================= HEADER ================= */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(12px);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.nav {
+    display: flex;
+    gap: 15px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.nav a:hover {
+    background: rgba(255,255,255,0.15);
+    box-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+/* ================= HERO (UPDATED) ================= */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+/* hero overlay */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 1s ease;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    text-shadow: 0 0 15px white;
+    animation: glowPulse 3s infinite;
+}
+
+.hero p {
+    margin-bottom: 20px;
+}
+
+/* button */
+.btn {
+    padding: 12px 25px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.3);
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+
+/* ================= SECTIONS ================= */
+.section {
+    padding: 100px 60px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    animation: fadeUp 1s ease;
+}
+
+.section.alt {
+    background: rgba(0,0,0,0.5);
+}
+
+.section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* ================= GRID ================= */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+/* ================= CARDS ================= */
+.card {
+    background: rgba(255,255,255,0.08);
+    padding: 25px;
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    transition: 0.4s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 25px rgba(0,255,140,0.3);
+}
+
+/* ================= IMAGE GRID ================= */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* ================= NEON IMAGE CARD ================= */
+.image-card {
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    padding: 2px;
+    backdrop-filter: blur(14px);
+    box-shadow:
+        0 0 12px rgba(255,255,255,0.2),
+        0 0 20px rgba(0,255,140,0.2);
+    transition: 0.4s;
+}
+
+/* animated border */
+.image-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 24px;
+    background: conic-gradient(
+        from 0deg,
+        #00ff88,
+        #ffffff,
+        #00ff88,
+        #ffffff,
+        #00ff88
+    );
+    animation: spinBorder 4s linear infinite, neonPulse 2.5s ease-in-out infinite;
+    z-index: -2;
+    filter: blur(12px);
+}
+
+/* inner glass */
+.image-card::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    z-index: -1;
+}
+
+/* image */
+.image-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 18px;
+    transition: 0.4s;
+}
+
+/* hover */
+.image-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow:
+        0 0 25px white,
+        0 0 50px #00ff88;
+}
+
+.image-card:hover img {
+    transform: scale(1.05);
+}
+
+/* caption */
+.image-card figcaption {
+    padding: 15px;
+}
+
+/* ================= TABLE ================= */
+table {
+    width: 100%;
+    background: rgba(255,255,255,0.08);
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 15px;
+}
+
+tbody tr:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+/* ================= FOOTER ================= */
+.footer {
+    text-align: center;
+    padding: 40px;
+    background: rgba(0,0,0,0.8);
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeUp {
+    from {opacity: 0; transform: translateY(30px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes glowPulse {
+    0%,100% {text-shadow: 0 0 10px white;}
+    50% {text-shadow: 0 0 25px white;}
+}
+
+@keyframes floatGlow {
+    from {transform: translateY(0);}
+    to {transform: translateY(40px);}
+}
+
+@keyframes spinBorder {
+    to {transform: rotate(360deg);}
+}
+
+@keyframes neonPulse {
+    0%,100% {opacity: 0.7;}
+    50% {opacity: 1;}
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+    .section {
+        padding: 80px 25px;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+}
